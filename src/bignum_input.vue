@@ -11,13 +11,16 @@
   />
 </template>
 <script>
-import {
-  bigToBN,
-  stringToBN,
-  bnToBig,
-  BN,
-  Big,
-} from "bn.js";
+import Big from "big.js";
+import { BN } from "bn.js";
+
+function bnToBig(val, denomination) {
+  return new Big(val.toString()).div(Math.pow(10, denomination));
+}
+
+function bigToBN(val, denomination) {
+  return new BN(val.mul(Math.pow(10, denomination)).toString());
+}
 
 export default {
   data() {
@@ -112,7 +115,7 @@ export default {
       return bnToBig(val, this.denomination).toString();
     },
     stringToBN(strVal) {
-      return stringToBN(strVal, this.denomination);
+      return bigToBN(new Big(strVal), this.denomination);
     },
     maxout() {
       if (this.maxNumBN != null) {
