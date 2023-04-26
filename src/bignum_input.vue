@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       // Val is a string
-      val: null,
+      val: this.bnToString(this.initial),
     };
   },
   computed: {
@@ -71,6 +71,7 @@ export default {
     },
     placeholder: String,
     value: BN,
+    initial: BN,
   },
   model: {
     prop: "value",
@@ -112,7 +113,7 @@ export default {
   },
   methods: {
     bnToString(val) {
-      return bnToBig(val, this.denomination).toString();
+      return val ? bnToBig(val, this.denomination).toString() : null;
     },
     stringToBN(strVal) {
       return bigToBN(new Big(strVal), this.denomination);
