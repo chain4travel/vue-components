@@ -71,7 +71,10 @@ export default {
     },
     placeholder: String,
     value: BN,
-    initial: BN,
+    initial: {
+      default: null,
+      type: [BN, Object],
+    },
   },
   model: {
     prop: "value",
