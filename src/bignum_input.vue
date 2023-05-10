@@ -13,6 +13,7 @@
 <script>
 import Big from "big.js";
 import { BN } from "bn.js";
+Big.PE = 32
 
 function bnToBig(val, denomination) {
   return new Big(val.toString()).div(Math.pow(10, denomination));
